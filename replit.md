@@ -101,6 +101,7 @@ This is a comprehensive real-time NSE (National Stock Exchange) stock screener a
 Changelog:
 - July 03, 2025. Initial setup
 - July 03, 2025. Enhanced with fresh UI, fixed 15-minute scan intervals, added IST timezone, preserved existing MACD logic, added new Pine Script range detection scanner
+- July 03, 2025. Updated with user's exact stock symbols and MACD calculation logic from original file, integrated MACDScannerOriginal module
 ```
 
 ## User Preferences

@@ -11,6 +11,7 @@ import pytz
 
 # Import custom modules
 from scanners.macd_scanner import MACDScanner
+from scanners.macd_scanner_original import MACDScannerOriginal
 from scanners.range_breakout_scanner import RangeBreakoutScanner
 from scanners.resistance_breakout_scanner import ResistanceBreakoutScanner
 from scanners.support_level_scanner import SupportLevelScanner
@@ -299,21 +300,21 @@ def run_all_scanners():
     """Run all enabled scanners - PRESERVE EXISTING MACD LOGIC"""
     with st.spinner("🔄 Running active scanners..."):
         try:
-            # Initialize scanners
-            macd_scanner = MACDScanner()
+            # Initialize scanners - UPDATED: Use original MACD logic
+            macd_scanner_original = MACDScannerOriginal()
             range_scanner = RangeBreakoutScanner()
             resistance_scanner = ResistanceBreakoutScanner()
             support_scanner = SupportLevelScanner()
             
             # PRESERVE EXISTING MACD LOGIC - Run all MACD timeframes if enabled
             if st.session_state.active_scanners["MACD 15min"]:
-                st.session_state.scan_results["MACD 15min"] = macd_scanner.scan(timeframe="15m")
+                st.session_state.scan_results["MACD 15min"] = macd_scanner_original.scan(timeframe="15m")
             
             if st.session_state.active_scanners["MACD 4h"]:
-                st.session_state.scan_results["MACD 4h"] = macd_scanner.scan(timeframe="4h")
+                st.session_state.scan_results["MACD 4h"] = macd_scanner_original.scan(timeframe="4h")
             
             if st.session_state.active_scanners["MACD 1d"]:
-                st.session_state.scan_results["MACD 1d"] = macd_scanner.scan(timeframe="1d")
+                st.session_state.scan_results["MACD 1d"] = macd_scanner_original.scan(timeframe="1d")
             
             # NEW SCANNERS - Run 4-hour intervals as specified
             if st.session_state.active_scanners["Range Breakout 4h"]:
